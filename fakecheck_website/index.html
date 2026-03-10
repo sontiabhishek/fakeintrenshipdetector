@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FakeCheck — Internship Poster Detector</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <i data-lucide="shield-check" class="logo-icon"></i>
+                <span>FakeCheck</span>
+            </div>
+            <div class="nav-links">
+                <a href="#analyze">Scan Poster</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#red-flags">Red Flags</a>
+                <a href="#about">About</a>
+            </div>
+            <a href="#analyze" class="btn btn-primary nav-btn">Try it Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-glow glow-1"></div>
+        <div class="hero-bg-glow glow-2"></div>
+        <div class="hero-content">
+            <div class="badge">AI-Powered Scam Detection</div>
+            <h1 class="hero-title">Don't Fall for <br><span class="text-gradient">Fake Internships</span></h1>
+            <p class="hero-subtitle">Instantly analyze internship posters and descriptions to detect scams. Our AI spots
+                the red flags so you don't have to.</p>
+            <div class="hero-ctas">
+                <a href="#analyze" class="btn btn-primary btn-lg">
+                    <i data-lucide="scan"></i> Scan a Poster Now
+                </a>
+                <a href="#how-it-works" class="btn btn-secondary btn-lg">Learn More</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Accuracy Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10k+</span>
+                    <span class="stat-label">Posters Analyzed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">&lt; 2s</span>
+                    <span class="stat-label">Processing Time</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload & Analyze Section -->
+    <section class="analyze-section" id="analyze">
+        <div class="section-container">
+            <h2 class="section-title">Detect Fake Internships Instantly</h2>
+            <p class="section-desc">Upload a poster image or paste the description text to get started.</p>
+
+            <!-- Input Area -->
+            <div class="input-container glass-card" id="input-area">
+                <div class="input-tabs">
+                    <button class="tab-btn active" data-tab="image">
+                        <i data-lucide="image"></i> Image Upload
+                    </button>
+                    <button class="tab-btn" data-tab="text">
+                        <i data-lucide="type"></i> Text Description
+                    </button>
+                </div>
+
+                <div class="tab-content active" id="tab-image">
+                    <div class="upload-area" id="drop-zone">
+                        <i data-lucide="upload-cloud" class="upload-icon"></i>
+                        <h3>Drag & drop poster image here</h3>
+                        <p>or click to browse from your device</p>
+                        <span class="file-hint">Supports JPG, PNG (Max 5MB)</span>
+                        <input type="file" id="file-input" hidden accept="image/*">
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-text">
+                    <textarea class="text-input"
+                        placeholder="Paste the internship description, requirements, and stipend details here for AI analysis..."
+                        rows="6"></textarea>
+                    <div class="text-actions">
+                        <button class="btn btn-primary" id="analyze-text-btn">Analyze Text</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading/Scanning State -->
+            <div class="scanning-container hidden" id="scanning-state">
+                <div class="scanner-animation">
+                    <div class="scanner-line"></div>
+                    <i data-lucide="cpu" class="scanner-icon"></i>
+                </div>
+                <h3>AI is analyzing the poster...</h3>
+                <p class="loading-text">Extracting text, checking company details, analyzing stipend realism...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Results Dashboard -->
+            <div class="results-dashboard hidden" id="results-area">
+                <!-- Will be populated dynamically by JS -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-container">
+            <h2 class="section-title">How Our AI Detects Scams</h2>
+            <p class="section-desc">Behind the scenes of the FakeCheck processing pipeline.</p>
+
+            <div class="pipeline-grid">
+                <div class="pipeline-step glass-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon"><i data-lucide="database"></i></div>
+                    <h3>Data Extraction</h3>
+                    <p>OCR models extract all text from the poster. NLP identifies key entities like company name,
+                        stipend, and contact info.</p>
+                </div>
+                <div class="pipeline-step glass-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon"><i data-lucide="brain-circuit"></i></div>
+                    <h3>Feature Analysis</h3>
+                    <p>BERT-based models analyze semantic meaning, looking for urgent language, vague requirements, or
+                        unrealistic promises.</p>
+                </div>
+                <div class="pipeline-step glass-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon"><i data-lucide="image-search"></i></div>
+                    <h3>Visual Inspection</h3>
+                    <p>CNNs analyze the design patterns, looking for low-quality logos, mismatched fonts, or generic
+                        stock templates common in scams.</p>
+                </div>
+                <div class="pipeline-step glass-card">
+                    <div class="step-number">04</div>
+                    <div class="step-icon"><i data-lucide="gavel"></i></div>
+                    <h3>Final Verdict</h3>
+                    <p>A Random Forest classifier combines all signals to generate a final confidence score and
+                        highlight specific red flags.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Red Flags Library -->
+    <section class="red-flags-section" id="red-flags">
+        <div class="section-container">
+            <h2 class="section-title">Common Fake Internship <span class="text-danger">Red Flags</span></h2>
+            <p class="section-desc">Learn what our AI looks for when analyzing a poster.</p>
+
+            <div class="flags-grid">
+                <div class="flag-card">
+                    <div class="flag-icon"><i data-lucide="alert-triangle"></i></div>
+                    <h3>"Too Good to Be True" Stipend</h3>
+                    <p>Offering unusually high pay for tasks requiring zero specific skills or prior experience.</p>
+                </div>
+                <div class="flag-card">
+                    <div class="flag-icon"><i data-lucide="globe"></i></div>
+                    <h3>No Official Website</h3>
+                    <p>Applications that direct to a Google Form instead of a verifiable company career portal.</p>
+                </div>
+                <div class="flag-card">
+                    <div class="flag-icon"><i data-lucide="mail-warning"></i></div>
+                    <h3>Sketchy Contact Info</h3>
+                    <p>Using personal email addresses (Gmail, Yahoo) instead of a corporate domain for applications.</p>
+                </div>
+                <div class="flag-card">
+                    <div class="flag-icon"><i data-lucide="clock"></i></div>
+                    <h3>Fake Urgency</h3>
+                    <p>"Hiring immediately", "Act fast", or pressure tactics to make you apply without thinking.</p>
+                </div>
+                <div class="flag-card">
+                    <div class="flag-icon"><i data-lucide="credit-card"></i></div>
+                    <h3>Asking for Money</h3>
+                    <p>Any request for a "training fee", "registration fee", or equipment purchase upfront.</p>
+                </div>
+                <div class="flag-card">
+                    <div class="flag-icon"><i data-lucide="file-x"></i></div>
+                    <h3>Vague Job Description</h3>
+                    <p>Roles that don't clearly explain the day-to-day duties or required technical qualifications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="about">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <i data-lucide="shield-check" class="logo-icon"></i>
+                    <span>FakeCheck</span>
+                </div>
+                <p>Protecting students from online internship scams through advanced AI analysis.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Hackathon Info</h4>
+                <ul>
+                    <li>Project Phase: Demo</li>
+                    <li>Built for AI/ML Hackathon 2026</li>
+                    <li>Open Source Prototype</li>
+                </ul>
+            </div>
+            <div class="footer-team">
+                <h4>About the Team</h4>
+                <p>Built with ❤️ by passionate developers looking to make a social impact in the student community.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 FakeCheck Project. For demonstration purposes only.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
